@@ -8,23 +8,23 @@ use ValueObjects\String\String;
 
 class PostcodeTest extends \PHPUnit_Framework_TestCase
 {
-	/** @var String $code */
-	private $code;
+    /** @var String $code */
+    private $code;
 
-	/** @var Postcode $postcode */
-	private $postcode;
+    /** @var Postcode $postcode */
+    private $postcode;
 
     public function setUp()
     {
-    	$this->value    = 'AA9A 9AA';
-    	$this->code     = new String($this->value);
-    	$this->postcode = new Postcode($this->code);
+        $this->value    = 'AA9A 9AA';
+        $this->code     = new String($this->value);
+        $this->postcode = new Postcode($this->code);
     }
 
 
     public function testPostcodeCanBeConstructed()
     {
-    	$value      = 'AA9A 9AA';
+        $value      = 'AA9A 9AA';
         $code       = new String($value);
         $postcode   = new Postcode($code);
 
@@ -35,7 +35,7 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
 
         self::assertEquals($value, $postcode->getCode()->toNative());
         self::assertEquals($value, $postcode->normalise());
-	}
+    }
 
 
     public function testGetCode()
@@ -48,7 +48,7 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     }
 
 
-	public function testNormalize()
+    public function testNormalize()
 	{
 		$value = 'TW13QS';
 		$postcode = new Postcode(new String($value));
@@ -57,7 +57,7 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
 
 
     public function testSameValueAs()
-	{
+    {
         $code = new String('AA9A 9AA');
         
         $postcode1 = new Postcode($code);
@@ -81,8 +81,8 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
 
     public function testIncode()
     {
-    	self::assertEquals('9AA', $this->postcode->incode());
-    	self::assertNull((new Postcode(new String('ABC')))->incode());
+        self::assertEquals('9AA', $this->postcode->incode());
+        self::assertNull((new Postcode(new String('ABC')))->incode());
     }
 
     public function testArea()
@@ -113,21 +113,21 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     {
         self::assertEquals('AA', $this->postcode->unit());
         self::assertNull((new Postcode(new String('ABC')))->unit());
-	}
+    }
 
 
-	public function testFromNative()
-	{
-		$postcode = Postcode::fromNative('TW8 8FB');
+    public function testFromNative()
+    {
+        $postcode = Postcode::fromNative('TW8 8FB');
 
-		self::assertInstanceOf(Postcode::class, $postcode);
-		self::assertInstanceOf(String::class, $postcode->getCode());
-	}
+        self::assertInstanceOf(Postcode::class, $postcode);
+        self::assertInstanceOf(String::class, $postcode->getCode());
+    }
 
-	public function testToNative()
-	{
-		self::assertEquals($this->value, $this->postcode->toNative());
-	}
+    public function testToNative()
+    {
+        self::assertEquals($this->value, $this->postcode->toNative());
+    }
 
     public function testIsValid()
     {
