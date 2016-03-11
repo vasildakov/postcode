@@ -18,10 +18,9 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
 
 ```php
 use VasilDakov\Postcode\Postcode;
-use VasilDakov\Postcode\Location;
 
 // Create Postcode with Location
-$postcode = new Postcode('AA9A 9AA', new Location($latitude, $longitude));
+$postcode = new Postcode('EC1V 9LB');
 
 // Validate Postcode value
 print $postcode->valid();
