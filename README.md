@@ -1,4 +1,5 @@
 # Postcode
+============
 
 [Value Object](http://martinfowler.com/bliki/ValueObject.html) that represents an UK postcode
 
