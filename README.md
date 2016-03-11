@@ -2,6 +2,10 @@
 
 [Value Object](http://martinfowler.com/bliki/ValueObject.html) that represents a UK postcode
 
+[![Build Status](https://travis-ci.org/vasildakov/postcode.svg?branch=master)](https://travis-ci.org/vasildakov/maxoptra)
+[![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
+
+
 ## Installation
 
 Here is a minimal example of a `composer.json` file that just defines a dependency on Postcode:
