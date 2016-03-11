@@ -1,14 +1,16 @@
 # Postcode
 ============
 
-[Value Object](http://martinfowler.com/bliki/ValueObject.html) that represents an UK postcode
-
 [![Build Status](https://travis-ci.org/vasildakov/postcode.svg?branch=master)](https://travis-ci.org/vasildakov/postcode)
 [![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/vasildakov/postcode/v/stable)](https://packagist.org/packages/vasildakov/postcode) 
 [![Total Downloads](https://poser.pugx.org/vasildakov/postcode/downloads)](https://packagist.org/packages/vasildakov/postcode) 
 [![Latest Unstable Version](https://poser.pugx.org/vasildakov/postcode/v/unstable)](https://packagist.org/packages/vasildakov/postcode) 
 [![License](https://poser.pugx.org/vasildakov/postcode/license)](https://packagist.org/packages/vasildakov/postcode)
+
+## Synopsis
+
+[Value Object](http://martinfowler.com/bliki/ValueObject.html) that represents an UK postcode
 
 ## Installation
 
@@ -20,7 +22,7 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
         }
     }
 
-## Usage Examples
+## Code Example
 
 #### Creating a Money object and accessing its monetary value
 
@@ -108,3 +110,8 @@ Sources:
 Postcodes cannot be validated just with a regular expression. Proper postcode validation requires having a full list of postcodes to check against. Relying on a regex will produce false postives/negatives.
 
 A complete list of Postcodes can be obtained from the ONS Postcode Directory, which is updated every 3 months.
+
+
+## License
+
+Code released under [the MIT license](https://github.com/vasildakov/postcode/blob/master/LICENSE)
