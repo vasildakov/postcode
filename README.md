@@ -4,7 +4,10 @@
 
 [![Build Status](https://travis-ci.org/vasildakov/postcode.svg?branch=master)](https://travis-ci.org/vasildakov/postcode)
 [![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
-
+[![Latest Stable Version](https://poser.pugx.org/vasildakov/postcode/v/stable)](https://packagist.org/packages/vasildakov/postcode) 
+[![Total Downloads](https://poser.pugx.org/vasildakov/postcode/downloads)](https://packagist.org/packages/vasildakov/postcode) 
+[![Latest Unstable Version](https://poser.pugx.org/vasildakov/postcode/v/unstable)](https://packagist.org/packages/vasildakov/postcode) 
+[![License](https://poser.pugx.org/vasildakov/postcode/license)](https://packagist.org/packages/vasildakov/postcode)
 
 ## Installation
 
