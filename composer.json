@@ -8,6 +8,7 @@
             "email": "vasildakov@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {
         "php": "^5.4 || ^7.0",
         "nicolopignatelli/valueobjects": "~2.0"
