@@ -1,5 +1,5 @@
 <?php 
-namespace VasilDakov\Postcode\ValueObject;
+namespace VasilDakov\Postcode;
 
 use ValueObjects\ValueObjectInterface;
 use ValueObjects\String\String;

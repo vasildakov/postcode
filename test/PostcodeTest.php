@@ -1,7 +1,7 @@
 <?php
-namespace VasilDakov\Tests\ValueObject;
+namespace VasilDakov\Tests;
 
-use VasilDakov\Postcode\ValueObject\Postcode;
+use VasilDakov\Postcode\Postcode;
 
 use ValueObjects\String\String;
 
