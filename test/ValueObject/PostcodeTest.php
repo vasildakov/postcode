@@ -75,39 +75,59 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     public function testOutcode()
     {
         self::assertEquals('AA9A', $this->postcode->outcode());
+        self::assertNull((new Postcode(new String('ABC')))->outcode());
     }
 
 
     public function testIncode()
     {
     	self::assertEquals('9AA', $this->postcode->incode());
+    	self::assertNull((new Postcode(new String('ABC')))->incode());
     }
 
     public function testArea()
     {
         self::assertEquals('AA', $this->postcode->area());
+        self::assertNull((new Postcode(new String('ABC')))->area());
     }
 
     public function testDistrict()
     {
         self::assertEquals('AA9', $this->postcode->district());
+        self::assertNull((new Postcode(new String('ABC')))->district());
     }
 
     public function testSubDistrict()
     {
         self::assertEquals('AA9A', $this->postcode->subDistrict());
+        self::assertNull((new Postcode(new String('ABC')))->subDistrict());
     }
 
     public function testSector()
     {
         self::assertEquals('AA9A 9', $this->postcode->sector());
+        self::assertNull((new Postcode(new String('ABC')))->sector());
     }
 
     public function testUnit()
     {
         self::assertEquals('AA', $this->postcode->unit());
+        self::assertNull((new Postcode(new String('ABC')))->unit());
 	}
 
+
+	public function testFromNative()
+	{
+		$postcode = Postcode::fromNative('TW8 8FB');
+
+		self::assertInstanceOf(Postcode::class, $postcode);
+		self::assertInstanceOf(String::class, $postcode->getCode());
+	}
+
+	public function testToNative()
+	{
+		self::assertEquals($this->value, $this->postcode->toNative());
+	}
 
     public function testIsValid()
     {

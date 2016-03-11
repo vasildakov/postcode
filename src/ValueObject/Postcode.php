@@ -31,7 +31,7 @@ class Postcode implements ValueObjectInterface
 
 
     /**
-     * @return boolean // => true
+     * @return boolean  Example: true
      */
     public function valid()
     {
@@ -40,7 +40,7 @@ class Postcode implements ValueObjectInterface
 
 
     /**
-     * @return string // => "AA9A 9AA"
+     * @return string  Example: "AA9A 9AA"
      */
     public function normalise()
     {
@@ -52,14 +52,7 @@ class Postcode implements ValueObjectInterface
     }
 
     /**
-     * The outward code is the part of the postcode before 
-     * the single space in the middle. It is between two 
-     * and four characters long. A few outward codes are 
-     * non-geographic, not divulging where mail is to be 
-     * sent. Examples of outward codes include "L1", "W1A", 
-     * "RH1", "RH10" or "SE1P".
-     * 
-     * @return string // => "AA9A"
+     * @return string Example: "AA9A"
      */
     public function outcode()
     {
@@ -71,13 +64,7 @@ class Postcode implements ValueObjectInterface
 
 
     /**
-     * The inward part is the part of the postcode after the 
-     * single space in the middle. It is three characters long. 
-     * The inward code assists in the delivery of post within 
-     * a postal district. Examples of inward codes include 
-     * "0NY", "7GZ", "7HF", or "8JQ".
-     * 
-     * @return string // => "9AA"
+     * @return string  Example: "9AA"
      */
     public function incode()
     {
@@ -90,15 +77,7 @@ class Postcode implements ValueObjectInterface
 
 
     /**
-     * The postcode area is part of the outward code. The postcode 
-     * area is between one and two characters long and is all letters. 
-     * Examples of postcode areas include "L" for Liverpool, "RH" for 
-     * Redhill and "EH" Edinburgh. A postal area may cover a wide area, 
-     * for example "RH" covers north Sussex, (which has little to do 
-     * with Redhill historically apart from the railway links), and 
-     * "BT" (Belfast) covers the whole of Northern Ireland.
-     * 
-     * @return string // => "AA"
+     * @return string  Example: "AA"
      */
     public function area()
     {
@@ -110,11 +89,7 @@ class Postcode implements ValueObjectInterface
     }
 
     /**
-     * The district code is part of the outward code. It is between two and four 
-     * characters long. It does not include the trailing letter found in some 
-     * outcodes. Examples of district codes include "L1", "W1", "RH1", "RH10" or "SE1".
-     * 
-     * @return string // => "AA9"
+     * @return string  Example: "AA9"
      */
     public function district()
     {
@@ -126,13 +101,7 @@ class Postcode implements ValueObjectInterface
     }
 
     /**
-     * The sub-district code is part of the outward code. It is often not present, 
-     * only existing in particularly high density London districts. It is between 
-     * three and four characters long. It does include the trailing letter omitted 
-     * from the district. Examples of sub-district codes include "W1A", "EC1A", 
-     * "NW1W", "E1W" or "SE1P".
-     * 
-     * @return string // => "AA9A"
+     * @return string  Example: "AA9A"
      */
     public function subDistrict()
     {
@@ -144,12 +113,7 @@ class Postcode implements ValueObjectInterface
     }   
 
     /**
-     * The postcode sector is made up of the postcode district, the single space, 
-     * and the first character of the inward code. It is between four and six 
-     * characters long (including the single space). Examples of postcode sectors 
-     * include "SW1W 0", "PO16 7", "GU16 7", or "L1 8", "CV1 4".
-     * 
-     * @return string // => "AA9A 9"
+     * @return string    Example: "AA9A 9"
      */
     public function sector()
     {
@@ -162,12 +126,7 @@ class Postcode implements ValueObjectInterface
 
 
     /**
-     * The postcode unit is two characters added to the end of the postcode sector. 
-     * Each postcode unit generally represents a street, part of a street, a single 
-     * address, a group of properties, a single property, a sub-section of the property, 
-     * an individual organisation or a subsection of the organisation.
-     * 
-     * @return string // => "AA"
+     * @return string  Example: "AA"
      */
     public function unit()
     {
@@ -188,7 +147,7 @@ class Postcode implements ValueObjectInterface
     {
         $value = func_get_arg(0);
 
-        return new static($value);
+        return new static(new String($value));
     }
 
     /**
@@ -198,7 +157,7 @@ class Postcode implements ValueObjectInterface
      */
     public function toNative()
     {
-        return $this->value;
+        return $this->code->toNative();
     }
 
 
