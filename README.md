@@ -1,8 +1,8 @@
 # Postcode
 
-[Value Object](http://martinfowler.com/bliki/ValueObject.html) that represents a UK postcode
+[Value Object](http://martinfowler.com/bliki/ValueObject.html) that represents an UK postcode
 
-[![Build Status](https://travis-ci.org/vasildakov/postcode.svg?branch=master)](https://travis-ci.org/vasildakov/maxoptra)
+[![Build Status](https://travis-ci.org/vasildakov/postcode.svg?branch=master)](https://travis-ci.org/vasildakov/postcode)
 [![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
 
 
