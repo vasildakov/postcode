@@ -6,10 +6,15 @@ use ValueObjects\String\String;
 
 class Postcode implements ValueObjectInterface 
 {
-	/**
-	 * @param String     $code
-	 * @param Coordinate $coordinate
-	 */
+    /**
+     * @var String     $code
+     */
+    private $code;
+
+
+    /**
+     * @param String     $code
+     */
     public function __construct(String $code)
     {
         $this->code = $code;
