@@ -23,13 +23,12 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
 
 ## Code Example
 
-#### Creating a Money object and accessing its monetary value
+#### Creating a Postcode object
 
 ```php
-use VasilDakov\ValueObject\Postcode;
+use VasilDakov\Postcode;
 
 // Create a Postcode
-
 $postcode = new Postcode('EC1V 9LB');
 
 // Validate Postcode value
