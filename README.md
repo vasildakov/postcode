@@ -46,7 +46,7 @@ $postcode->outcode()      // => "EC1V"
 $postcode->incode()       // => "9LB"
 $postcode->area()         // => "EC"
 $postcode->district()     // => "EC1"
-$postcode->subDistrict()  // => "EC1V"
+$postcode->subdistrict()  // => "EC1V"
 $postcode->sector()       // => "EC1V 9"
 $postcode->unit()         // => "LB"
 
@@ -54,7 +54,7 @@ $postcode->unit()         // => "LB"
 
 ### Method Overview
 
-| Postcode | outcode()  | incode()  | area()  | district()  | subDistrict()  | sector()  | unit()  |
+| Postcode | outcode()  | incode()  | area()  | district()  | subdistrict()  | sector()  | unit()  |
 |----------|------------|-----------|---------|-------------|----------------|-----------|---------|
 | AA9A 9AA | AA9A       | 9AA       | AA      | AA9         | AA9A           | AA9A 9    | AA      |
 | A9A 9AA  | A9A        | 9AA       | A       | A9          | A9A            | A9A 9     | AA      |
