@@ -21,6 +21,12 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    public function testConstructorThrowsAnExceptions()
+    {
+        self::setExpectedException('InvalidArgumentException');
+        $this->postcode = new Postcode(1234.45);
+    }
+
     public function testPostcodeCanBeConstructed()
     {
         $value      = 'AA9A 9AA';
@@ -45,11 +51,13 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
 
 
     public function testNormalize()
-	{
-		$value = 'TW13QS';
-		$postcode = new Postcode($value);
-		self::assertEquals('TW1 3QS', $postcode->normalise());
-	}
+    {
+        $value = 'TW13QS';
+        $postcode = new Postcode($value);
+        self::assertEquals('TW1 3QS', $postcode->normalise());
+
+        self::assertNull((new Postcode('ABC'))->normalise());
+    }
 
 
     public function testSameValueAs()
@@ -63,6 +71,14 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
         self::assertTrue($postcode2->sameValueAs($postcode1));
 
         self::assertFalse($postcode1->sameValueAs($postcode3));
+
+        /** @var \PHPUnit_Framework_MockObject_MockObject|\ValueObjects\ValueObjectInterface $mock */
+        $mock = $this->getMockBuilder(\ValueObjects\ValueObjectInterface::class)
+            ->setMethods(array())
+            ->getMockForAbstractClass()
+        ;
+
+        self::assertFalse($postcode1->sameValueAs($mock));
     }
 
 
@@ -93,8 +109,8 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
 
     public function testSubDistrict()
     {
-        self::assertEquals('AA9A', $this->postcode->subDistrict());
-        self::assertNull((new Postcode('ABC'))->subDistrict());
+        self::assertEquals('AA9A', $this->postcode->subdistrict());
+        self::assertNull((new Postcode('ABC'))->subdistrict());
     }
 
     public function testSector()
@@ -130,5 +146,14 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
             $postcode = new Postcode($value);
             self::assertTrue($postcode->valid());
         }
+    }
+
+
+    public function testToString() 
+    {
+        $string = $this->postcode->__toString();
+
+        self::assertInternalType('string', $string);
+        self::assertEquals($this->value, $string);
     }
 }

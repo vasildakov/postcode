@@ -18,7 +18,7 @@ class Postcode implements ValueObjectInterface
     public function __construct($value)
     {
         if (false === \is_string($value)) {
-            throw new InvalidArgumentException($value, array('string'));
+            throw new InvalidArgumentException();
         }
 
         $this->value = $value;
@@ -98,7 +98,7 @@ class Postcode implements ValueObjectInterface
     /**
      * @return string  Example: "AA9A"
      */
-    public function subDistrict()
+    public function subdistrict()
     {
         if ($this->valid()) { 
             \preg_match("/^([a-z]{1,2}\d)([a-z])$/i", $this->outcode(), $matches);
