@@ -2,31 +2,26 @@
 namespace VasilDakov\Postcode;
 
 use ValueObjects\ValueObjectInterface;
-use ValueObjects\String\String;
+use InvalidArgumentException;
 
 class Postcode implements ValueObjectInterface 
 {
     /**
-     * @var String     $code
+     * @var string $value
      */
-    private $code;
+    private $value;
 
 
     /**
-     * @param String     $code
+     * @param string $value
      */
-    public function __construct(String $code)
+    public function __construct($value)
     {
-        $this->code = $code;
-    }
+        if (false === \is_string($value)) {
+            throw new InvalidArgumentException($value, array('string'));
+        }
 
-
-    /**
-     * @return String $code
-     */
-    public function getCode()
-    {
-        return $this->code;
+        $this->value = $value;
     }
 
 
@@ -35,7 +30,7 @@ class Postcode implements ValueObjectInterface
      */
     public function valid()
     {
-        return (boolean) \preg_match("/^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i", $this->code);
+        return (boolean) \preg_match("/^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i", $this->value);
     }
 
 
@@ -57,7 +52,7 @@ class Postcode implements ValueObjectInterface
     public function outcode()
     {
         if ($this->valid()) { 
-            return \trim(\preg_replace("/\d[a-z]{2}$/i", "", $this->code));
+            return \trim(\preg_replace("/\d[a-z]{2}$/i", "", $this->value));
         }
         return null;
     }
@@ -69,7 +64,7 @@ class Postcode implements ValueObjectInterface
     public function incode()
     {
         if ($this->valid()) { 
-            \preg_match("/\d[a-z]{2}$/i", $this->code, $matches);
+            \preg_match("/\d[a-z]{2}$/i", $this->value, $matches);
             return $matches[0];
         }
         return null;
@@ -82,7 +77,7 @@ class Postcode implements ValueObjectInterface
     public function area()
     {
         if ($this->valid()) { 
-            \preg_match("/^[a-z]{1,2}/i", $this->code, $matches);
+            \preg_match("/^[a-z]{1,2}/i", $this->value, $matches);
             return $matches[0];
         }
         return null;
@@ -118,7 +113,7 @@ class Postcode implements ValueObjectInterface
     public function sector()
     {
         if ($this->valid()) {
-            \preg_match("/^[a-z]{1,2}\d[a-z\d]?\s*\d/i", $this->code, $matches);
+            \preg_match("/^[a-z]{1,2}\d[a-z\d]?\s*\d/i", $this->value, $matches);
             return $matches[0];
         }
         return null;
@@ -131,7 +126,7 @@ class Postcode implements ValueObjectInterface
     public function unit()
     {
         if ($this->valid()) {
-            \preg_match("/[a-z]{2}$/i", $this->code, $matches);
+            \preg_match("/[a-z]{2}$/i", $this->value, $matches);
             return $matches[0];
         }
         return null;
@@ -147,7 +142,7 @@ class Postcode implements ValueObjectInterface
     {
         $value = func_get_arg(0);
 
-        return new static(new String($value));
+        return new static($value);
     }
 
     /**
@@ -157,7 +152,7 @@ class Postcode implements ValueObjectInterface
      */
     public function toNative()
     {
-        return $this->code->toNative();
+        return $this->value;
     }
 
 
@@ -173,7 +168,7 @@ class Postcode implements ValueObjectInterface
             return false;
         }
 
-        return $this->getCode()->sameValueAs($object->getCode());
+        return $this->toNative() === $object->toNative();
     }
 
 
@@ -184,6 +179,6 @@ class Postcode implements ValueObjectInterface
      */
     public function __toString()
     {
-    	return \sprintf('%s', $this->getCode());
+    	return \sprintf('%s', $this->value);
     }
 }
