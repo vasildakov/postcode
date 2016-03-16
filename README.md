@@ -1,5 +1,4 @@
 # Postcode
-============
 
 [![Build Status](https://travis-ci.org/vasildakov/postcode.svg?branch=master)](https://travis-ci.org/vasildakov/postcode)
 [![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
@@ -17,7 +16,7 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
 
     {
         "require": {
-            "vasildakov/postcode": "1.0.*"
+            "vasildakov/postcode": "^1.0.5"
         }
     }
 
@@ -26,7 +25,7 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
 #### Creating a Postcode object
 
 ```php
-use VasilDakov\Postcode;
+use VasilDakov\Postcode\Postcode;
 
 // Create a Postcode
 $postcode = new Postcode('EC1V 9LB');
