@@ -9,7 +9,7 @@ class Postcode implements ValueObjectInterface
     /**
      * @var string $value
      */
-    private $value;
+    protected $value;
 
 
     /**
