@@ -90,7 +90,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA9A 9AA"
      */
-    public function normalise() : string
+    public function normalise()
     {
         return \strtoupper(sprintf("%s %s", $this->outward(), $this->inward()));
     }
@@ -107,7 +107,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string Example: "AA9A"
      */
-    public function outward() : string
+    public function outward()
     {
         return \trim(
             \preg_replace(self::REGEXP_OUTWARD, "", $this->value)
@@ -134,7 +134,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "9AA"
      */
-    public function inward() : string
+    public function inward()
     {
         return (\preg_match(self::REGEXP_INWARD, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -161,7 +161,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA"
      */
-    public function area() : string
+    public function area()
     {
         return (\preg_match(self::REGEXP_AREA, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -179,7 +179,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA9"
      */
-    public function district() : string
+    public function district()
     {
         return (\preg_match(self::REGEXP_DISTRICT, $this->outward(), $matches)) ? $matches[1] : "";
     }
@@ -197,7 +197,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string    Example: "AA9A 9"
      */
-    public function sector() : string
+    public function sector()
     {
         return (\preg_match(self::REGEXP_SECTOR, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -211,7 +211,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA"
      */
-    public function unit() : string
+    public function unit()
     {
         return (\preg_match(self::REGEXP_UNIT, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -222,7 +222,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA9A"
      */
-    public function subdistrict() : string
+    public function subdistrict()
     {
         return (\preg_match(self::REGEXP_SUBDISTRICT, $this->outward(), $matches)) ? $matches[0] : "";
     }
@@ -234,7 +234,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @param  string  $value
      * @return boolean
      */
-    public function isValid(string $value): bool
+    public function isValid(string $value)
     {
         if (!\preg_match(self::REGEXP_POSTCODE, $value)) {
             return false;
@@ -272,7 +272,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @param  Postcode $other
      * @return boolean
      */
-    public function equals(Postcode $other) : bool
+    public function equals(Postcode $other)
     {
         if (!($other instanceof PostcodeInterface)) {
             return false;
@@ -290,7 +290,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @param  Postcode $object
      * @return bool
      */
-    public function compareTo(Postcode $other) : bool
+    public function compareTo(Postcode $other)
     {
         if (\get_class($this) !== \get_class($other)) {
             return 0;
@@ -304,7 +304,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return array
      */
-    public function split() : array
+    public function split()
     {
         return [
             'outward'     => $this->outward(),

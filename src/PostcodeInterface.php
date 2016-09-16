@@ -14,7 +14,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function normalise(): string;
+    public function normalise();
 
 
     /**
@@ -22,7 +22,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function outward() : string;
+    public function outward();
 
 
     /**
@@ -30,7 +30,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function inward() : string;
+    public function inward();
 
 
     /**
@@ -38,7 +38,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function area(): string;
+    public function area();
 
 
     /**
@@ -46,7 +46,7 @@ interface PostcodeInterface
      *
      * @return String|null
      */
-    public function district() : string;
+    public function district();
 
 
     /**
@@ -54,7 +54,7 @@ interface PostcodeInterface
      *
      * @return String|null
      */
-    public function sector() : string;
+    public function sector();
 
 
     /**
@@ -62,7 +62,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function unit() : string;
+    public function unit();
 
 
     /**
@@ -70,26 +70,26 @@ interface PostcodeInterface
      *
      * @return String|null
      */
-    public function subdistrict() : string;
+    public function subdistrict();
 
 
     /**
      * @param  Postcode $other
      * @return bool
      */
-    public function equals(Postcode $other) : bool;
+    public function equals(Postcode $other);
 
 
     /**
      * @param  Postcode $other
      * @return bool
      */
-    public function compareTo(Postcode $other): bool;
+    public function compareTo(Postcode $other);
 
     
     /**
      * @param  String $value
      * @return bool
      */
-    public function isValid(String $value) : bool;
+    public function isValid(String $value);
 }
