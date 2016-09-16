@@ -14,7 +14,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function normalise(): String;
+    public function normalise(): string;
 
 
     /**
@@ -22,7 +22,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function outward() : String;
+    public function outward() : string;
 
 
     /**
@@ -30,7 +30,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function inward() : String;
+    public function inward() : string;
 
 
     /**
@@ -38,7 +38,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function area(): String;
+    public function area(): string;
 
 
     /**
@@ -46,7 +46,7 @@ interface PostcodeInterface
      *
      * @return String|null
      */
-    public function district() : String;
+    public function district() : string;
 
 
     /**
@@ -54,7 +54,7 @@ interface PostcodeInterface
      *
      * @return String|null
      */
-    public function sector() : String;
+    public function sector() : string;
 
 
     /**
@@ -62,7 +62,7 @@ interface PostcodeInterface
      *
      * @return String
      */
-    public function unit() : String;
+    public function unit() : string;
 
 
     /**
@@ -70,7 +70,7 @@ interface PostcodeInterface
      *
      * @return String|null
      */
-    public function subdistrict() : String;
+    public function subdistrict() : string;
 
 
     /**
