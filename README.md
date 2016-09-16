@@ -39,7 +39,6 @@ print $postcode->valid();
 #### Perform simple validations, parsing and normalisation
 
 ```php
-$postcode->valid()        // => true
 $postcode->normalise()    // => "EC1V 9LB"
 
 $postcode->outcode()      // => "EC1V"

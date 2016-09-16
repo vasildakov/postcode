@@ -115,6 +115,15 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
 
 
     /**
+     * Backward compatibility with 1.0
+     */
+    public function outcode()
+    {
+        return $this->outward();
+    }
+
+
+    /**
      * Inward code
      *
      * The inward part is the part of the postcode after the single
@@ -127,6 +136,15 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     public function inward() : String
     {
         return (\preg_match(self::REGEXP_INWARD, $this->value, $matches)) ? $matches[0] : "";
+    }
+
+
+    /**
+     * Backward compatibility with 1.0
+     */
+    public function incode()
+    {
+        return $this->inward();
     }
 
 
