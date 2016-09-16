@@ -91,5 +91,5 @@ interface PostcodeInterface
      * @param  String $value
      * @return bool
      */
-    public function isValid(String $value);
+    public function isValid($value);
 }
