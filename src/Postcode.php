@@ -75,7 +75,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @param String $postcode  e.g. "AA9A 9AA"
      */
-    public function __construct(String $value)
+    public function __construct(string $value)
     {
         if (!$this->isValid($value)) {
             throw new \InvalidArgumentException("Error Processing Request", 1);
@@ -89,7 +89,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA9A 9AA"
      */
-    public function normalise() : String
+    public function normalise()
     {
         return \strtoupper(sprintf("%s %s", $this->outward(), $this->inward()));
     }
@@ -106,7 +106,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string Example: "AA9A"
      */
-    public function outward() : String
+    public function outward()
     {
         return \trim(
             \preg_replace(self::REGEXP_OUTWARD, "", $this->value)
@@ -135,7 +135,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "9AA"
      */
-    public function inward() : String
+    public function inward()
     {
         return (\preg_match(self::REGEXP_INWARD, $this->value, $matches)) ? $matches[0] : "";
     }
