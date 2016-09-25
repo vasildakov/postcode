@@ -86,7 +86,7 @@ interface PostcodeInterface
      */
     public function compareTo(Postcode $other);
 
-    
+
     /**
      * @param  String $value
      * @return bool
