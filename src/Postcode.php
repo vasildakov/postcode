@@ -75,7 +75,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @param String $postcode  e.g. "AA9A 9AA"
      */
-    public function __construct(string $value)
+    public function __construct($value)
     {
         if (!$this->isValid($value)) {
             throw new \InvalidArgumentException("Error Processing Request", 1);
