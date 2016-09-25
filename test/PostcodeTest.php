@@ -87,6 +87,18 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
         self::assertFalse($postcode1->equals($postcode2));
     }
 
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::compareTo
+     */
+    public function canCompareTwoObjects()
+    {
+        $postcode1 = new Postcode('AA9A 9AA');
+        $postcode2 = new Postcode('BB9B 9BB');
+
+        self::assertFalse($postcode1->equals($postcode2));
+    }
+
 
     /**
      * @test
@@ -193,8 +205,7 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsValid($string, $expected)
     {
-        $postcode = new Postcode($string);
-        self::assertEquals($expected, $postcode->isValid($string));
+        self::assertEquals($expected, Postcode::isValid($string));
     }
 
 
@@ -286,7 +297,9 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
             ['EC1V 9LB', true],
             ['EC1V9LB',  true],
             ['TW8 8FB',  true],
-            ['TW88FB',   true]
+            ['TW88FB',   true],
+            ['ABC 123',  false],
+            ['XYZ 987',  false],
         ];
     }
 }

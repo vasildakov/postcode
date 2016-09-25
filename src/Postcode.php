@@ -238,7 +238,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @param  string  $value
      * @return boolean
      */
-    public function isValid($value)
+    public static function isValid($value)
     {
         if (!\preg_match(self::REGEXP_POSTCODE, $value)) {
             return false;
@@ -278,9 +278,6 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      */
     public function equals(Postcode $other)
     {
-        if (!($other instanceof PostcodeInterface)) {
-            return false;
-        }
         return $this->compareTo($other) == 0;
     }
 
@@ -296,9 +293,6 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      */
     public function compareTo(Postcode $other)
     {
-        if (\get_class($this) !== \get_class($other)) {
-            return 0;
-        }
         return (strcmp($this->toNative(), $other->toNative()) !== 0);
     }
 
