@@ -19,24 +19,27 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
         $this->postcode = new Postcode($this->value);
     }
 
-
-    public function testConstructorThrowsAnExceptions()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::__construct
+     */
+    public function constructorThrowsAnExceptions()
     {
         self::setExpectedException(\InvalidArgumentException::class);
         $this->postcode = new Postcode(1234.45);
     }
 
 
-    public function testPostcodeCanBeConstructed()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::__construct
+     */
+    public function postcodeCanBeConstructedWithValidData()
     {
         $value      = 'AA9A 9AA';
         $postcode   = new Postcode($value);
 
         self::assertInstanceOf(Postcode::class, $postcode);
-
-        //self::assertTrue($postcode->valid());
-        //self::assertEquals($value, $postcode->toNative());
-        //self::assertEquals($value, $postcode->normalise());
     }
 
 
@@ -48,66 +51,122 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
         self::assertEquals($value, $postcode->toNative());
     }
 
-
-    public function testNormalize()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::normalise
+     */
+    public function canNormalizeString()
     {
         $value = 'TW13QS';
         $postcode = new Postcode($value);
         self::assertEquals('TW1 3QS', $postcode->normalise());
     }
 
-
-    public function testSameValueAs()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::equals
+     */
+    public function twoObjectsAreEquals()
     {
         $postcode1 = new Postcode('AA9A 9AA');
         $postcode2 = new Postcode('AA9A 9AA');
 
-        $postcode3 = new Postcode('TW1 3QS');
-
         self::assertTrue($postcode1->equals($postcode2));
         self::assertTrue($postcode2->equals($postcode1));
+    }
 
-        self::assertFalse($postcode1->equals($postcode3));
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::equals
+     */
+    public function twoObjectsAreNotEquals()
+    {
+        $postcode1 = new Postcode('AA9A 9AA');
+        $postcode2 = new Postcode('BB9B 9BB');
+
+        self::assertFalse($postcode1->equals($postcode2));
     }
 
 
-    public function testOutward()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::outward
+     */
+    public function canReturnTheOutwardCode()
     {
         self::assertEquals('AA9A', $this->postcode->outward());
     }
 
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::outcode
+     * @uses   \VasilDakov\Postcode\Postcode::outward
+     */
+    public function canReturnTheOutcode()
+    {
+        self::assertEquals('AA9A', $this->postcode->outcode());
+    }
 
-    public function testInward()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::inward
+     */
+    public function canReturnTheInwardCode()
     {
         self::assertEquals('9AA', $this->postcode->inward());
     }
 
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::incode
+     * @uses   \VasilDakov\Postcode\Postcode::inward
+     */
+    public function canReturnTheIncode()
+    {
+        self::assertEquals('9AA', $this->postcode->incode());
+    }
 
-    public function testArea()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::area
+     */
+    public function canReturnTheAreaCode()
     {
         self::assertEquals('AA', $this->postcode->area());
     }
 
-
-    public function testDistrict()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::district
+     */
+    public function canReturnTheDistrictCode()
     {
         self::assertEquals('AA9', $this->postcode->district());
     }
 
-
-    public function testSubDistrict()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::subdistrict
+     */
+    public function canReturnSubDistrictCode()
     {
         self::assertEquals('AA9A', $this->postcode->subdistrict());
     }
 
-
-    public function testSector()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::sector
+     */
+    public function canReturnSectorCode()
     {
         self::assertEquals('AA9A 9', $this->postcode->sector());
     }
 
-
-    public function testUnit()
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::unit
+     */
+    public function canReturnUnitCode()
     {
         self::assertEquals('AA', $this->postcode->unit());
     }
@@ -127,22 +186,107 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function testIsValid()
+    /**
+     * @test
+     * @dataProvider postcodeProvider
+     * @covers \VasilDakov\Postcode\Postcode::isValid
+     */
+    public function testIsValid($string, $expected)
     {
-        /* $values = ['EC1V 9LB', 'EC1V9LB', 'TW8 8FB', 'TW88FB'];
-
-        foreach ($values as $value) {
-            $postcode = new Postcode($value);
-            self::assertTrue($postcode->valid());
-        } */
+        $postcode = new Postcode($string);
+        self::assertEquals($expected, $postcode->isValid($string));
     }
 
 
+    /**
+     * @test
+     */
     public function testToString()
     {
         $string = (string) $this->postcode;
 
         self::assertInternalType('string', $string);
         self::assertEquals($this->value, $string);
+    }
+
+    /**
+     * @test
+     */
+    public function canBeSerialized()
+    {
+        $serialized = $this->postcode->serialize();
+
+        self::assertInternalType('string', $serialized);
+    }
+
+    /**
+     * @test
+     */
+    public function canBeUnserialized()
+    {
+        $serialized = $this->postcode->serialize();
+
+        $value = $this->postcode->unserialize($serialized);
+
+        self::assertEquals('AA9A 9AA', $value);
+    }
+
+
+    /**
+     * @test
+     */
+    public function jsonSerialize()
+    {
+        $array = $this->postcode->jsonSerialize();
+
+        self::assertInternalType('array', $array);
+
+        self::assertArrayHasKey('postcode', $array);
+    }
+
+
+    /**
+     * @test
+     * @covers \VasilDakov\Postcode\Postcode::split
+     * @uses   \VasilDakov\Postcode\Postcode::outward
+     * @uses   \VasilDakov\Postcode\Postcode::inward
+     * @uses   \VasilDakov\Postcode\Postcode::area
+     * @uses   \VasilDakov\Postcode\Postcode::district
+     * @uses   \VasilDakov\Postcode\Postcode::subdistrict
+     * @uses   \VasilDakov\Postcode\Postcode::sector
+     * @uses   \VasilDakov\Postcode\Postcode::unit
+     */
+    public function testSplit()
+    {
+        $array = $this->postcode->split();
+
+        self::assertInternalType('array', $array);
+
+        self::assertArrayHasKey('outward', $array);
+        self::assertArrayHasKey('inward', $array);
+        self::assertArrayHasKey('area', $array);
+        self::assertArrayHasKey('district', $array);
+        self::assertArrayHasKey('subdistrict', $array);
+        self::assertArrayHasKey('sector', $array);
+        self::assertArrayHasKey('unit', $array);
+
+
+        self::assertEquals('AA9A', $array['outward']);
+        self::assertEquals('9AA', $array['inward']);
+        self::assertEquals('AA', $array['area']);
+        self::assertEquals('AA9', $array['district']);
+        self::assertEquals('AA9A 9', $array['sector']);
+        self::assertEquals('AA', $array['unit']);
+    }
+
+
+    public function postcodeProvider()
+    {
+        return [
+            ['EC1V 9LB', true],
+            ['EC1V9LB',  true],
+            ['TW8 8FB',  true],
+            ['TW88FB',   true]
+        ];
     }
 }
