@@ -74,7 +74,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     /**
      * Constructor
      *
-     * @param string $postcode  e.g. "AA9A 9AA"
+     * @param string $value  e.g. "AA9A 9AA"
      */
     public function __construct($value)
     {
