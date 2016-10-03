@@ -22,10 +22,10 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @covers \VasilDakov\Postcode\Postcode::__construct
+     * @expectedException \VasilDakov\Postcode\Exception\InvalidArgumentException
      */
     public function constructorThrowsAnExceptions()
     {
-        self::setExpectedException(\InvalidArgumentException::class);
         $this->postcode = new Postcode(1234.45);
     }
 

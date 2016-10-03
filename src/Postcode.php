@@ -7,7 +7,7 @@
  */
 namespace VasilDakov\Postcode;
 
-use InvalidArgumentException;
+use VasilDakov\Postcode\Exception;
 
 class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
 {
@@ -76,11 +76,12 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @param String $postcode  e.g. "AA9A 9AA"
      */
-    public function __construct($value)
+    public function __construct(string $value)
     {
-        if (!$this->isValid($value)) {
-            throw new \InvalidArgumentException("Error Processing Request", 1);
+        if (!\preg_match(self::REGEXP_POSTCODE, $value)) {
+            throw new Exception\InvalidArgumentException;
         }
+
         $this->value = $value;
     }
 
@@ -99,11 +100,10 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     /**
      * Outward code
      *
-     * The outward code is the part of the postcode before the single space
-     * in the middle. It is between two and four characters long. A few
-     * outward codes are non-geographic, not divulging where mail is to
-     * be sent. Examples of outward codes include "L1", "W1A", "RH1",
-     * "RH10" or "SE1P".
+     * The outward code is the part of the postcode before the single space in the middle.
+     * It is between two and four characters long. A few outward codes are non-geographic,
+     * not divulging where mail is to be sent. Examples of outward codes include "L1", "W1A",
+     * "RH1", "RH10" or "SE1P".
      *
      * @return string Example: "AA9A"
      */
@@ -129,10 +129,9 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     /**
      * Inward code
      *
-     * The inward part is the part of the postcode after the single
-     * space in the middle. It is three characters long. The inward
-     * code assists in the delivery of post within a postal district.
-     * Examples of inward codes include "0NY", "7GZ", "7HF", or "8JQ".
+     * The inward part is the part of the postcode after the single space in the middle.
+     * It is three characters long. The inward code assists in the delivery of post within
+     * a postal district. Examples of inward codes include "0NY", "7GZ", "7HF", or "8JQ".
      *
      * @return string  Example: "9AA"
      */
@@ -156,12 +155,11 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     /**
      * Area code
      *
-     * The postcode area is part of the outward code. The postcode area
-     * is either one or two characters long and is all letters. Examples
-     * of postcode areas include "L" for Liverpool, "RH" for Redhill and
-     * "EH" for Edinburgh. A postal area may cover a wide area, for example
-     * "RH" covers north Sussex, and "BT" (Belfast) covers the whole of
-     * Northern Ireland. There are 124 postcode areas in the UK.
+     * The postcode area is part of the outward code. The postcode area is either one or two
+     * characters long and is all letters. Examples of postcode areas include "L" for Liverpool,
+     * "RH" for Redhill and "EH" for Edinburgh. A postal area may cover a wide area, for example
+     * "RH" covers north Sussex, and "BT" (Belfast) covers the whole of Northern Ireland.
+     * There are 124 postcode areas in the UK.
      *
      * @return string  Example: "AA"
      */
@@ -174,12 +172,11 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     /**
      * District code
      *
-     * The postcode district is the outward code. It is made
-     * of the postcode area plus one or two digits (and sometimes
-     * a final letter). The outward code is between two and four
-     * characters long. Examples of postcode districts include
-     * "W1A", "RH1", "RH10" or "SE1P". There are approximately
-     * 2,900 postcode districts.
+     * The postcode district is the outward code. It is made of the postcode area
+     * plus one or two digits (and sometimes a final letter). The outward code is
+     * between two and four characters long. Examples of postcode districts include
+     * "W1A", "RH1", "RH10" or "SE1P".
+     * There are approximately 2,900 postcode districts.
      *
      * @return string  Example: "AA9"
      */
@@ -192,12 +189,10 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     /**
      * Sector code
      *
-     * The postcode sector is made up of the postcode district,
-     * the single space, and the first character of the inward
-     * code. It is between four and six characters long (including
-     * the single space). Examples of postcode sectors include
-     * "SW1W 0", "PO16 7", "GU16 7", or "L1 8", "CV1 4". There
-     * are approximately 9,650 postcode sectors.
+     * The postcode sector is made up of the postcode district, the single space, and the
+     * first character of the inward code. It is between four and six characters long
+     * (including the single space). Examples of postcode sectors include "SW1W 0", "PO16 7",
+     * "GU16 7", or "L1 8", "CV1 4". There are approximately 9,650 postcode sectors.
      *
      * @return string    Example: "AA9A 9"
      */
