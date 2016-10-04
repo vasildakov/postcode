@@ -66,9 +66,9 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
 
 
     /**
-     * @var String $value
+     * @var string $value
      */
-    private $value;
+    protected $value;
 
 
     /**
