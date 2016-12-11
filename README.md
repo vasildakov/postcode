@@ -1,4 +1,4 @@
-# Postcode
+# UK Postcode ValueObject
 
 [![Build Status](https://travis-ci.org/vasildakov/postcode.svg?branch=master)](https://travis-ci.org/vasildakov/postcode)
 [![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
