@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-/**
- * Postcode
- *
- * @copyright Copyright (c) Vasil Dakov <vasildakov@gmail.com>
- * @license http://opensource.org/licenses/MIT MIT
- */
 namespace VasilDakov\Postcode;
 
 use VasilDakov\Postcode\Exception;
 
+/**
+ * Postcode
+ * 
+ * @author Vasil Dakov <vasildakov@gmail.com>
+ * @copyright Copyright (c) Vasil Dakov <vasildakov@gmail.com>
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
 {
     /**

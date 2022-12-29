@@ -17,7 +17,7 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
 
     {
         "require": {
-            "vasildakov/postcode": "^1.1"
+            "vasildakov/postcode": "^2.0"
         }
     }
 
