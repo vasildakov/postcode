@@ -1,10 +1,17 @@
-name: PHP Composer
+name: Main workflow
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "php-82" ]
+    branches:
+      - php-82
+      - main
+      - develop
   pull_request:
-    branches: [ "php-82" ]
+    branches:
+      - php-82
+      - main
+      - develop
 
 permissions:
   contents: read
@@ -12,10 +19,27 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-22.04, windows-2019, macos-latest]
+        php-versions: ['7.4', '8.0', '8.1', '8.2', '8.3']
+    env:
+      extensions: opcache, xdebug
+      key: cache-v5
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: mbstring, intl
+        ini-values: post_max_size=256M, max_execution_time=180
+        coverage: xdebug
+        tools: php-cs-fixer, phpunit:${{ matrix.phpunit-versions }}
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
