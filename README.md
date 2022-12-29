@@ -31,10 +31,18 @@ use VasilDakov\Postcode\Postcode;
 // Create a Postcode
 $postcode = new Postcode('EC1V 9LB');
 
-// Validate Postcode value
-print $postcode->valid();
+```
+
+#### Compare two postcode objects
+```php
+
+$postcode = new Postcode('SW1A 2AB');
+
+$postcode->equals(new Postcode('SW1A 2AB')); // true
+$postcode->equals(new Postcode('WC2N 5DN')); // false
 
 ```
+
 
 #### Perform simple validations, parsing and normalisation
 
