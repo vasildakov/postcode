@@ -27,11 +27,11 @@ $composer require vasildakov/postcode "^2.0"
 Here is a minimal example of a `composer.json` file that just defines a dependency on Postcode:
 
 ```json
-    {
-        "require": {
-            "vasildakov/postcode": "^2.0"
-        }
+{
+    "require": {
+        "vasildakov/postcode": "^2.0"
     }
+}
 ```
 
 ## Code Example
