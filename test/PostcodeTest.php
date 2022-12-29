@@ -1,10 +1,11 @@
 <?php
 namespace VasilDakov\Tests;
 
+use PHPUnit\Framework\TestCase;
 use VasilDakov\Postcode\PostcodeInterface;
 use VasilDakov\Postcode\Postcode;
 
-class PostcodeTest extends \PHPUnit_Framework_TestCase
+class PostcodeTest extends TestCase
 {
     /** @var string $value */
     private $value;
@@ -12,23 +13,11 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     /** @var Postcode $postcode */
     private $postcode;
 
-
-    public function setUp()
+    public function setUp(): void
     {
         $this->value    = 'AA9A 9AA';
         $this->postcode = new Postcode($this->value);
     }
-
-    /**
-     * @test
-     * @covers \VasilDakov\Postcode\Postcode::__construct
-     * @expectedException \VasilDakov\Postcode\Exception\InvalidArgumentException
-     */
-    public function constructorThrowsAnExceptions()
-    {
-        $this->postcode = new Postcode(1234.45);
-    }
-
 
     /**
      * @test
@@ -208,7 +197,6 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
         self::assertEquals($expected, Postcode::isValid($string));
     }
 
-
     /**
      * @test
      */
@@ -216,7 +204,6 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     {
         $string = (string) $this->postcode;
 
-        self::assertInternalType('string', $string);
         self::assertEquals($this->value, $string);
     }
 
@@ -227,7 +214,7 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     {
         $serialized = $this->postcode->serialize();
 
-        self::assertInternalType('string', $serialized);
+        self::assertNotEmpty($serialized);
     }
 
     /**
@@ -249,9 +236,6 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     public function jsonSerialize()
     {
         $array = $this->postcode->jsonSerialize();
-
-        self::assertInternalType('array', $array);
-
         self::assertArrayHasKey('postcode', $array);
     }
 
@@ -270,8 +254,6 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
     public function testSplit()
     {
         $array = $this->postcode->split();
-
-        self::assertInternalType('array', $array);
 
         self::assertArrayHasKey('outward', $array);
         self::assertArrayHasKey('inward', $array);

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Postcode
  *
@@ -15,60 +18,59 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * Regular expression pattern for Outward code
      */
 
-    const REGEXP_POSTCODE_UKGOV = "/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$/";
+     private const REGEXP_POSTCODE_UKGOV = "/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$/";
 
     /**
      * Regular expression pattern for Outward code
      */
-    const REGEXP_POSTCODE     = "/^[A-Za-z]{1,2}\d[a-z\d]?\s*\d[A-Za-z]{2}$/i";
+    private const REGEXP_POSTCODE = "/^[A-Za-z]{1,2}\d[a-z\d]?\s*\d[A-Za-z]{2}$/i";
 
 
     /**
      * Regular expression pattern for Outward code
      */
-    const REGEXP_OUTWARD     = "/\d[A-Za-z]{1,2}$/i";
+    private const REGEXP_OUTWARD = "/\d[A-Za-z]{1,2}$/i";
 
 
     /**
      * Regular expression pattern for Inward code
      */
-    const REGEXP_INWARD      = "/\d[A-Za-z]{2}$/i";
+    private const REGEXP_INWARD = "/\d[A-Za-z]{2}$/i";
 
 
     /**
      * Regular expression pattern for Area code
      */
-    const REGEXP_AREA        = "/^[A-Za-z]{1,2}/i";
+    private const REGEXP_AREA = "/^[A-Za-z]{1,2}/i";
 
 
     /**
      * Regular expression pattern for Sector code
      */
-    const REGEXP_SECTOR      = "/^[A-Za-z]{1,2}\d[A-Za-z\d]?\s*\d/i";
-
+    private const REGEXP_SECTOR = "/^[A-Za-z]{1,2}\d[A-Za-z\d]?\s*\d/i";
 
     /**
      * Regular expression pattern for Unit code
      */
-    const REGEXP_UNIT        =  "/[A-Za-z]{2}$/i";
+    private const REGEXP_UNIT =  "/[A-Za-z]{2}$/i";
 
 
     /**
      * Regular expression pattern for District code
      */
-    const REGEXP_DISTRICT    = "/^([A-Za-z]{1,2}\d)([A-Za-z])$/i";
+    private const REGEXP_DISTRICT = "/^([A-Za-z]{1,2}\d)([A-Za-z])$/i";
 
 
     /**
      * Regular expression pattern for Subdistrict code
      */
-    const REGEXP_SUBDISTRICT = "/^([A-Za-z]{1,2}\d)([A-Za-z])$/i";
+    private const REGEXP_SUBDISTRICT = "/^([A-Za-z]{1,2}\d)([A-Za-z])$/i";
 
 
     /**
      * @var string $value
      */
-    protected $value;
+    private string $value;
 
 
     /**
@@ -76,7 +78,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @param string $value  e.g. "AA9A 9AA"
      */
-    public function __construct($value)
+    public function __construct(string $value)
     {
         if (!self::isValid($value)) {
             throw new Exception\InvalidArgumentException;
@@ -91,7 +93,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA9A 9AA"
      */
-    public function normalise()
+    public function normalise(): string
     {
         return \strtoupper(sprintf("%s %s", $this->outward(), $this->inward()));
     }
@@ -107,7 +109,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string Example: "AA9A"
      */
-    public function outward()
+    public function outward(): string
     {
         return \trim(
             \preg_replace(self::REGEXP_OUTWARD, "", $this->value)
@@ -120,7 +122,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string Example: "AA9A"
      */
-    public function outcode()
+    public function outcode(): string
     {
         return $this->outward();
     }
@@ -135,7 +137,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "9AA"
      */
-    public function inward()
+    public function inward(): string
     {
         return (\preg_match(self::REGEXP_INWARD, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -146,7 +148,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "9AA"
      */
-    public function incode()
+    public function incode(): string
     {
         return $this->inward();
     }
@@ -163,7 +165,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA"
      */
-    public function area()
+    public function area(): string
     {
         return (\preg_match(self::REGEXP_AREA, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -180,7 +182,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA9"
      */
-    public function district()
+    public function district(): string
     {
         return (\preg_match(self::REGEXP_DISTRICT, $this->outward(), $matches)) ? $matches[1] : "";
     }
@@ -196,7 +198,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string    Example: "AA9A 9"
      */
-    public function sector()
+    public function sector(): string
     {
         return (\preg_match(self::REGEXP_SECTOR, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -210,7 +212,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA"
      */
-    public function unit()
+    public function unit(): string
     {
         return (\preg_match(self::REGEXP_UNIT, $this->value, $matches)) ? $matches[0] : "";
     }
@@ -221,7 +223,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string  Example: "AA9A"
      */
-    public function subdistrict()
+    public function subdistrict(): string
     {
         return (\preg_match(self::REGEXP_SUBDISTRICT, $this->outward(), $matches)) ? $matches[0] : "";
     }
@@ -233,7 +235,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @param  string  $value
      * @return boolean
      */
-    public static function isValid($value)
+    public static function isValid(string $value): bool
     {
         if (!\preg_match(self::REGEXP_POSTCODE, $value)) {
             return false;
@@ -271,7 +273,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @param  Postcode $other
      * @return boolean
      */
-    public function equals(Postcode $other)
+    public function equals(Postcode $other): bool
     {
         return $this->compareTo($other) == 0;
     }
@@ -286,7 +288,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @param  Postcode $object
      * @return bool
      */
-    public function compareTo(Postcode $other)
+    public function compareTo(Postcode $other): bool
     {
         return (strcmp($this->toNative(), $other->toNative()) !== 0);
     }
