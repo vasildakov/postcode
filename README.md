@@ -11,15 +11,28 @@
 
 [Value Object](http://martinfowler.com/bliki/ValueObject.html) that represents an UK postcode
 
+## Requirements
+
+`PHP >= 8.0`
+
+
 ## Installation
+
+This package is installable and autoloadable via Composer as [vasildakov/postcode](https://packagist.org/packages/vasildakov/postcode)
+
+```shell
+$composer require vasildakov/postcode "^2.0"
+```
 
 Here is a minimal example of a `composer.json` file that just defines a dependency on Postcode:
 
+```json
     {
         "require": {
             "vasildakov/postcode": "^2.0"
         }
     }
+```
 
 ## Code Example
 
@@ -57,6 +70,12 @@ $postcode->subdistrict()  // => "EC1V"
 $postcode->sector()       // => "EC1V 9"
 $postcode->unit()         // => "LB"
 
+```
+
+#### Unit Tests
+
+```shell
+$./vendor/bin/phpunit --coverage-html ./build/coverage
 ```
 
 ### Method Overview
