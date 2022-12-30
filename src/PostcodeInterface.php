@@ -1,10 +1,12 @@
 <?php
+
 /**
  * This file is part of the Postcode
  *
  * @copyright Copyright (c) Vasil Dakov <vasildakov@gmail.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+
 namespace VasilDakov\Postcode;
 
 interface PostcodeInterface
@@ -12,7 +14,7 @@ interface PostcodeInterface
     /**
      * Normalise Postcode
      *
-     * @return String
+     * @return string
      */
     public function normalise(): string;
 
@@ -20,7 +22,7 @@ interface PostcodeInterface
     /**
      * Outward code
      *
-     * @return String
+     * @return string
      */
     public function outward(): string;
 
@@ -28,7 +30,7 @@ interface PostcodeInterface
     /**
      * Inward code
      *
-     * @return String
+     * @return string
      */
     public function inward(): string;
 
@@ -36,7 +38,7 @@ interface PostcodeInterface
     /**
      * Postcode area
      *
-     * @return String
+     * @return string
      */
     public function area(): string;
 
@@ -44,7 +46,7 @@ interface PostcodeInterface
     /**
      * Postcode district
      *
-     * @return String|null
+     * @return string
      */
     public function district(): string;
 
@@ -52,7 +54,7 @@ interface PostcodeInterface
     /**
      * Postcode sector
      *
-     * @return String|null
+     * @return string
      */
     public function sector(): string;
 
@@ -60,7 +62,7 @@ interface PostcodeInterface
     /**
      * Postcode unit
      *
-     * @return String
+     * @return string
      */
     public function unit(): string;
 
@@ -68,7 +70,7 @@ interface PostcodeInterface
     /**
      * Subdistrict
      *
-     * @return String|null
+     * @return string
      */
     public function subdistrict(): string;
 
@@ -88,7 +90,7 @@ interface PostcodeInterface
 
 
     /**
-     * @param  String $value
+     * @param  string $value
      * @return bool
      */
     public static function isValid(string $value): bool;

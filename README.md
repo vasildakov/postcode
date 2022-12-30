@@ -47,13 +47,24 @@ $postcode = new Postcode('EC1V 9LB');
 ```
 
 #### Compare two postcode objects
-```php
 
+```php
 $postcode = new Postcode('SW1A 2AB');
 
 $postcode->equals(new Postcode('SW1A 2AB')); // true
 $postcode->equals(new Postcode('WC2N 5DN')); // false
+```
 
+#### Postcode validation
+
+```php
+// Regex Validator
+$validator = new Validator\Regex();
+$validator->isValid('WC2N 5DN'); // boolen
+
+// Database Validator
+$db = new Validator\Database();
+$db->isValid('WC2N 5DN');
 ```
 
 

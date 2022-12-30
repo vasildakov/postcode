@@ -8,18 +8,21 @@ use VasilDakov\Postcode\Exception;
 
 /**
  * Postcode
- * 
+ *
  * @author Vasil Dakov <vasildakov@gmail.com>
  * @copyright Copyright (c) Vasil Dakov <vasildakov@gmail.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
+final class Postcode implements
+    PostcodeInterface,
+    \Serializable,
+    \JsonSerializable
 {
     /**
      * Regular expression pattern for Outward code
      */
 
-     private const REGEXP_POSTCODE_UKGOV = "/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$/";
+    private const REGEXP_POSTCODE_UKGOV = "/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$/";
 
     /**
      * Regular expression pattern for Outward code
@@ -73,7 +76,6 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      */
     private string $value;
 
-
     /**
      * Constructor
      *
@@ -82,7 +84,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     public function __construct(string $value)
     {
         if (!self::isValid($value)) {
-            throw new Exception\InvalidArgumentException;
+            throw new Exception\InvalidArgumentException();
         }
 
         $this->value = $value;
@@ -96,7 +98,9 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      */
     public function normalise(): string
     {
-        return \strtoupper(sprintf("%s %s", $this->outward(), $this->inward()));
+        return \strtoupper(
+            sprintf("%s %s", $this->outward(), $this->inward())
+        );
     }
 
 
@@ -252,10 +256,8 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      */
     public static function fromNative()
     {
-        $value = func_get_arg(0);
-        return new static($value);
+        return new static(func_get_arg(0));
     }
-
 
     /**
      * Returns the value of the string
@@ -267,7 +269,6 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
         return $this->value;
     }
 
-
     /**
      * Returns TRUE if this Postcode object equals to another.
      *
@@ -278,6 +279,9 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     {
         return $this->compareTo($other) == 0;
     }
+
+
+
 
 
     /**
@@ -300,7 +304,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return array
      */
-    public function split()
+    public function split(): array
     {
         return [
             'outward'     => $this->outward(),
@@ -322,7 +326,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      */
     public function __toString()
     {
-        return (string) $this->normalise();
+        return $this->normalise();
     }
 
 
@@ -359,7 +363,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'postcode' => (string) $this->normalise()
+            'postcode' => $this->normalise()
         ];
     }
 }

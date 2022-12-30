@@ -22,3 +22,4 @@ jobs:
       - run: composer install -n --prefer-dist
 
       - run: ./vendor/bin/phpunit -c phpunit.xml.dist
+      - run: ./vendor/bin/psalm --show-info=true
