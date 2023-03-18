@@ -101,12 +101,11 @@ Sources:
 
 
 
-## Note on Postcode Validation
+## Postcode Verification
 
-Postcodes cannot be validated just with a regular expression. Proper postcode validation requires having a full list of postcodes to check against. Relying on a regex will produce false postives/negatives.
+Postcodes can only be validated using pattern matching, such as regular expressions. Accurate postcode verification would require having a full list of postcodes to check against.
 
-A complete list of Postcodes can be obtained from the ONS Postcode Directory, which is updated every 3 months.
-
+A complete list of Postcodes can be obtained from the [ONS Postcode Directory](https://en.wikipedia.org/wiki/ONS_Postcode_Directory), which is updated every 3 months.
 
 ## License
 
