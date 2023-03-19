@@ -317,7 +317,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->normalise();
     }
@@ -346,6 +346,24 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
         return $this->value;
     }
 
+    /**
+     * Generates a storable representation of a value
+     *
+     */
+    public function __serialize(): array
+    {
+        return [$this->value];
+    }
+
+    /**
+     * Creates a PHP value from a stored representation
+     *
+     */
+    public function __unserialize(array $serialized): void
+    {
+        $this->value = $serialized[0];
+    }
+
 
     /**
      * Specify data which should be serialized to JSON
@@ -353,6 +371,7 @@ class Postcode implements PostcodeInterface, \Serializable, \JsonSerializable
      * @return mixed data which can be serialized by <b>json_encode</b>,
      * @link   http://php.net/manual/en/jsonserializable.jsonserialize.php
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return [
