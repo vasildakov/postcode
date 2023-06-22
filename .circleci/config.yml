@@ -39,10 +39,6 @@ jobs:
 
       - run: composer install -n --prefer-dist
 
-      # prepare the database
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
-
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
       - run: ./vendor/bin/phpunit
