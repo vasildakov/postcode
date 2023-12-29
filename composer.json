@@ -51,4 +51,3 @@
         "static-analysis": "vendor/bin/psalm --shepherd --stats"
     }
 }
-XDEBUG_MODE=coverage or xdebug.mode=coverage
