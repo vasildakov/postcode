@@ -3,9 +3,9 @@
 [![Build Status](https://github.com/vasildakov/postcode/workflows/build/badge.svg)](https://github.com/vasildakov/postcode/actions)
 [![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vasildakov/postcode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vasildakov/postcode/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/vasildakov/postcode/v/stable)](https://packagist.org/packages/vasildakov/postcode)
+![Packagist Version](https://img.shields.io/packagist/v/vasildakov/postcode)
 [![Total Downloads](https://poser.pugx.org/vasildakov/postcode/downloads)](https://packagist.org/packages/vasildakov/postcode)
-[![PHP Version Require](http://poser.pugx.org/vasildakov/postcode/require/php)](https://packagist.org/packages/vasildakov/postcode)
+![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/vasildakov/postcode/php)
 [![License](https://poser.pugx.org/vasildakov/postcode/license)](https://packagist.org/packages/vasildakov/postcode)
 
 ## Synopsis
