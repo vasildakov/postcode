@@ -1,6 +1,6 @@
 # UK Postcode ValueObject
 
-![build](https://github.com/vasildakov/postcode/actions/workflows/php.yml/badge.svg)
+[![Build Status](https://github.com/vasildakov/postcode/workflows/build/badge.svg)](https://github.com/vasildakov/postcode/actions)
 [![Coverage Status](https://coveralls.io/repos/github/vasildakov/postcode/badge.svg?branch=master)](https://coveralls.io/github/vasildakov/postcode?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vasildakov/postcode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vasildakov/postcode/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/vasildakov/postcode/v/stable)](https://packagist.org/packages/vasildakov/postcode)
