@@ -5,6 +5,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/vasildakov/postcode/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/vasildakov/postcode/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/vasildakov/postcode/v/stable)](https://packagist.org/packages/vasildakov/postcode)
 [![Total Downloads](https://poser.pugx.org/vasildakov/postcode/downloads)](https://packagist.org/packages/vasildakov/postcode)
+[![PHP Version Require](http://poser.pugx.org/vasildakov/postcode/require/php)](https://packagist.org/packages/vasildakov/postcode)
 [![License](https://poser.pugx.org/vasildakov/postcode/license)](https://packagist.org/packages/vasildakov/postcode)
 
 ## Synopsis
